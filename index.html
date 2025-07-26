@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌸 Happy Birthday Mamas 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      background: #fff0f5;
+      font-family: 'Comic Sans MS', cursive;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #d63384;
+      animation: pop 2s ease infinite;
+    }
+
+    .message {
+      margin-top: 1.5rem;
+      font-size: 1.4rem;
+      color: #444;
+    }
+
+    @keyframes pop {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .video-button, .undangan-button {
+      margin-top: 20px;
+      background: #ff69b4;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      animation: pop 1.5s ease infinite;
+      display: inline-block;
+    }
+
+    .undangan-button {
+      background: #6c63ff;
+      font-size: 1rem;
+      padding: 10px 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="confetti"></div>
+
+  <div class="slide active">
+    <h1>🌸 Happy Birthday, Mamas! 🌸</h1>
+    <div class="message">Semoga hari ini seindah bunga ini dan hatimu selalu bahagia 💕</div>
+  </div>
+
+  <div class="slide">
+    <h1>🎂 Mas, kamu adalah laki laki hebat yang aku temuin 🎂</h1>
+  </div>
+
+  <div class="slide">
+    <h1>💌 dan Setiap detik nya bersamamu itu berharga 💌</h1>
+  </div>
+
+  <div class="slide">
+    <h1>💘 Semoga semua harapanmu terkabul tahun ini 💘</h1>
+  </div>
+
+  <div class="slide">
+    <h1>🌈 Aku sayang kamu hari ini, besok, dan selamanya 🌈</h1>
+    <a href="https://drive.google.com/file/d/1nHmYklaFVQOvf5NxptQkAQYMaR7cvIi7/view" target="_blank" class="video-button">
+      🎥 Lihat Video Ucapan Teman 🎉
+    </a>
+    <a href="undangan.pdf" target="_blank" class="undangan-button">
+      📄 Lihat Undangan
+    </a>
+  </div>
+
+  <audio autoplay loop>
+    <source src="lagu.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script>
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+      });
+    }
+
+    setInterval(() => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }, 4000);
+
+    // Confetti
+    const confetti = document.querySelector('.confetti');
+    for (let i = 0; i < 100; i++) {
+      const confetto = document.createElement('div');
+      confetto.style.position = 'absolute';
+      confetto.style.width = '10px';
+      confetto.style.height = '10px';
+      confetto.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+      confetto.style.top = '-10px';
+      confetto.style.left = `${Math.random() * 100}%`;
+      confetto.style.opacity = Math.random();
+      confetto.style.transform = `rotate(${Math.random() * 360}deg)`;
+      confetto.style.animation = `fall ${3 + Math.random() * 5}s linear infinite`;
+      confetti.appendChild(confetto);
+    }
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
